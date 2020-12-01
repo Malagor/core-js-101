@@ -20,8 +20,14 @@
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
+  this.getArea = function area() {
+    return this.width * this.height;
+  };
+
+  return this;
 }
 
 
@@ -35,8 +41,8 @@ function Rectangle(/* width, height */) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 
@@ -53,6 +59,15 @@ function getJSON(/* obj */) {
  */
 function fromJSON(/* proto, json */) {
   throw new Error('Not implemented');
+  // console.log(proto, json);
+  // const localProto = proto;
+  // const jsn = JSON.parse(json);
+  // console.log('localProto =>', jsn);
+  // const keys = Object.keys(jsn);
+  // keys.forEach((key) => {
+  //   localProto[key] = jsn[key];
+  // });
+  // return localProto;
 }
 
 
@@ -111,33 +126,94 @@ function fromJSON(/* proto, json */) {
  */
 
 const cssSelectorBuilder = {
-  element(/* value */) {
-    throw new Error('Not implemented');
-  },
+  // prop: {
+  //   element: null,
+  //   id: null,
+  //   class: [],
+  //   attr: null,
+  //   pseudoClass: [],
+  //   pseudoElement: null,
+  // },
 
-  id(/* value */) {
-    throw new Error('Not implemented');
-  },
+  // element(value) {
+  //   this.prop.element = value;
+  //   return this;
+  // },
 
-  class(/* value */) {
-    throw new Error('Not implemented');
-  },
+  // id(value) {
+  //   this.prop.id = value;
+  //   return this;
+  // },
 
-  attr(/* value */) {
-    throw new Error('Not implemented');
-  },
+  // class(value) {
+  //   if (!this.prop.class.includes(value)) {
+  //     this.prop.class.push(value);
+  //   }
 
-  pseudoClass(/* value */) {
-    throw new Error('Not implemented');
-  },
+  //   return this;
+  // },
 
-  pseudoElement(/* value */) {
-    throw new Error('Not implemented');
-  },
+  // attr(value) {
+  //   this.prop.attr = value;
+  //   return this;
+  // },
 
-  combine(/* selector1, combinator, selector2 */) {
-    throw new Error('Not implemented');
-  },
+  // pseudoClass(value) {
+  //   if (!this.prop.pseudoClass.includes(value)) {
+  //     this.prop.pseudoClass.push(value);
+  //   }
+
+  //   return this;
+  // },
+
+  // pseudoElement(value) {
+  //   this.prop.pseudoElement = value;
+  //   return this;
+  // },
+
+  // combine(selector1, combinator, selector2) {
+  //   return `${selector1} ${combinator} ${selector2}`;
+  // },
+
+  // stringify() {
+  //   console.log(this.prop);
+  //   let resultStr = '';
+  //   if (this.prop.element) resultStr += this.prop.element;
+  //   if (this.prop.id) resultStr += `#${this.prop.id}`;
+
+  //   // Classes
+  //   if (this.prop.class.length) {
+  //     let classesResult = '';
+  //     this.prop.class.forEach((cls) => {
+  //       classesResult += `.${cls}`;
+  //     });
+  //     resultStr += classesResult;
+  //   }
+
+  //   if (this.prop.attr) resultStr += `[${this.prop.attr}]`;
+
+  //   // Pseudo Classes
+  //   if (this.pseudoClass.length) {
+  //     let pseudoClassesResult = '';
+  //     this.prop.pseudoClass.forEach((cls) => {
+  //       pseudoClassesResult += `:${cls}`;
+  //     });
+  //     resultStr += pseudoClassesResult;
+  //   }
+
+  //   if (this.prop.pseudoElement) resultStr += `::${this.prop.pseudoElement}`;
+
+  //   this.prop.element = null;
+  //   this.prop.id = null;
+  //   this.prop.class = [];
+  //   this.prop.attr = null;
+  //   this.prop.pseudoClass = [];
+  //   this.prop.pseudoElement = null;
+
+  //   console.log('resultStr', resultStr);
+
+  //   return resultStr;
+  // },
 };
 
 
