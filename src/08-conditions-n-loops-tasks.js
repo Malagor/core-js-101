@@ -69,8 +69,12 @@ function getFactorial(n) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let res = 0;
+  for (let i = n1; i <= n2; i += 1) {
+    res += i;
+  }
+  return res;
 }
 
 
@@ -89,8 +93,9 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  const arr = [a, b, c].sort((q, w) => q - w);
+  return (arr[0] + arr[1]) > arr[2];
 }
 
 
@@ -126,8 +131,29 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const byTop = (rect2.top >= rect1.top)
+    && (rect2.top <= rect1.top + rect1.height);
+  const byBottom = (rect2.top + rect2.height >= rect1.top)
+    && (rect2.top + rect2.height <= rect1.top + rect1.height);
+
+  const byLeft = (rect2.left >= rect1.left)
+    && (rect2.left <= rect1.left + rect1.width);
+  const byRight = (rect2.left + rect1.width >= rect1.left)
+    && (rect2.left + rect2.width <= rect1.left + rect1.width);
+
+  const byTop2 = (rect1.top >= rect2.top)
+    && (rect1.top <= rect2.top + rect2.height);
+  const byBottom2 = (rect1.top + rect1.height >= rect2.top)
+    && (rect1.top + rect1.height <= rect2.top + rect2.height);
+
+  const byLeft2 = (rect1.left >= rect2.left)
+    && (rect1.left <= rect2.left + rect2.width);
+  const byRight2 = (rect1.left + rect1.width >= rect2.left)
+    && (rect1.left + rect1.width <= rect2.left + rect2.width);
+
+  return ((byTop || byBottom) && (byLeft || byRight))
+  || ((byTop2 || byBottom2) && (byLeft2 || byRight2));
 }
 
 
@@ -157,8 +183,9 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  return Math.sqrt((circle.center.x - point.x) ** 2 + (circle.center.y - point.y) ** 2)
+    < circle.radius;
 }
 
 
@@ -173,8 +200,14 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str.charAt(i);
+    if (str.indexOf(char) === str.lastIndexOf(char)) {
+      return char;
+    }
+  }
+  return null;
 }
 
 
