@@ -35,17 +35,8 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
-  // console.log('len', len);
-  // const arr = new Array(len);
-
-  // let value = -1;
-
-  // return arr.map(() => {
-  //   value += 2;
-  //   return value;
-  // });
+function generateOdds(len) {
+  return new Array(len).fill(0).map((v, i) => (i * 2) + 1);
 }
 
 
@@ -242,8 +233,15 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  const newArr = [];
+  arr.reduce((acc, v) => {
+    const sum = acc + v;
+    newArr.push(sum);
+    return sum;
+  }, 0);
+
+  return newArr;
 }
 
 /**
@@ -276,8 +274,8 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  return arr.reduce((acc, v, i) => acc.concat(new Array(i + 1).fill(v)), []);
 }
 
 
