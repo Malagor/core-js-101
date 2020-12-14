@@ -46,8 +46,8 @@ function getComposition(f, g) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  return (x) => x ** exponent;
 }
 
 
@@ -64,8 +64,15 @@ function getPowerFunction(/* exponent */) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...arg) {
+  switch (arg.length) {
+    case 2:
+      return (x) => (arg[0] * x) + arg[1];
+    case 3:
+      return (x) => (arg[0] * (x ** 2)) + (arg[1] * x) + arg[2];
+    default:
+      return () => arg[0];
+  }
 }
 
 
@@ -83,8 +90,9 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  const a = func();
+  return () => a;
 }
 
 
@@ -105,6 +113,11 @@ function memoize(/* func */) {
  */
 function retry(/* func, attempts */) {
   throw new Error('Not implemented');
+
+//   console.log('func', func);
+//   console.log('attempts', attempts);
+//   // const attempt = attempts;
+//   return () => func(attempts);
 }
 
 
@@ -131,8 +144,14 @@ function retry(/* func, attempts */) {
  * cos(3.141592653589793) ends
  *
  */
-function logger(/* func, logFunc */) {
-  throw new Error('Not implemented');
+function logger(func, logFunc) {
+  return (...arg) => {
+    const strArgs = JSON.stringify(arg).slice(1, -1);
+    logFunc(`${func.name}(${strArgs}) starts`);
+    const res = func(...arg);
+    logFunc(`${func.name}(${strArgs}) ends`);
+    return res;
+  };
 }
 
 
@@ -151,6 +170,13 @@ function logger(/* func, logFunc */) {
  */
 function partialUsingArguments(/* fn, ...args1 */) {
   throw new Error('Not implemented');
+  // const fnLen = fn.length;
+  // return (...arg) => {
+  //   while (args1.length < fnLen) {
+  //     return partialUsingArguments;
+  //   }
+  //   return fn(...arg);
+  // };
 }
 
 
